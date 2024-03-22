@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Brands.Commands.Create
 {
-    public class CreateBrandCommand : IRequest<CreatedBrandResponse>, IIntervalRequest, ILoggableRequest,ICacheRemoverRequest
+    public class CreateBrandCommand : IRequest<CreateBrandResponse>, IIntervalRequest, ILoggableRequest,ICacheRemoverRequest
     {
         public string Name { get; set; }
         public int Interval => 1;

@@ -17,7 +17,7 @@ namespace Application.Features.Brands.Profiles
         public MappingProfile()
         { 
             CreateMap<Brand, CreateBrandCommand>().ReverseMap();
-            CreateMap<Brand, CreatedBrandResponse>().ReverseMap();
+            CreateMap<Brand, CreateBrandResponse>().ReverseMap();
             CreateMap<Brand, GetListBrandResponse>().ReverseMap();
             CreateMap<IPaginate<Brand>, BrandListModel>().ReverseMap();
         }

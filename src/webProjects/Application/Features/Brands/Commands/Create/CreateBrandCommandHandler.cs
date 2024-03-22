@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Brands.Commands.Create
 {
-    public class CreateBrandCommandHandler : IRequestHandler<CreateBrandCommand, CreatedBrandResponse>
+    public class CreateBrandCommandHandler : IRequestHandler<CreateBrandCommand, CreateBrandResponse>
     {
         private readonly IBrandRepository _brandRepository;
         private readonly IMapper _mapper;
@@ -21,11 +21,11 @@ namespace Application.Features.Brands.Commands.Create
             _brandRepository = brandRepository;
             _mapper = mapper;
         }
-        public async Task<CreatedBrandResponse> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
+        public async Task<CreateBrandResponse> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
         {
             Brand mappedBrand = _mapper.Map<Brand>(request);
             Brand createdBrand = await _brandRepository.AddAsync(mappedBrand);
-            CreatedBrandResponse createdBrandResponse = _mapper.Map<CreatedBrandResponse>(createdBrand);
+            CreateBrandResponse createdBrandResponse = _mapper.Map<CreateBrandResponse>(createdBrand);
             return createdBrandResponse;
         }
     }

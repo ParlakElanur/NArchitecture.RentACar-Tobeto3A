@@ -53,12 +53,11 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModelId = table.Column<int>(type: "int", nullable: false),
+                    ModelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ModelYear = table.Column<int>(type: "int", nullable: false),
                     Plate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     State = table.Column<int>(type: "int", nullable: false),
                     DailyPrice = table.Column<double>(type: "float", nullable: false),
-                    ModelId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -67,8 +66,8 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Cars", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cars_Models_ModelId1",
-                        column: x => x.ModelId1,
+                        name: "FK_Cars_Models_ModelId",
+                        column: x => x.ModelId,
                         principalTable: "Models",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -79,9 +78,8 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CarId = table.Column<int>(type: "int", nullable: false),
+                    CarId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CarId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -90,22 +88,22 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_CarImages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CarImages_Cars_CarId1",
-                        column: x => x.CarId1,
+                        name: "FK_CarImages_Cars_CarId",
+                        column: x => x.CarId,
                         principalTable: "Cars",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarImages_CarId1",
+                name: "IX_CarImages_CarId",
                 table: "CarImages",
-                column: "CarId1");
+                column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_ModelId1",
+                name: "IX_Cars_ModelId",
                 table: "Cars",
-                column: "ModelId1");
+                column: "ModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Models_BrandId",

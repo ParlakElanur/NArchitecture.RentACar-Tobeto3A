@@ -9,7 +9,7 @@ namespace Domain.Entities
 {
     public class CarImage : BaseEntity<Guid>
     {
-        public int CarId { get; set; }
+        public Guid CarId { get; set; }
         public string ImagePath { get; set; }
         public Car Car { get; set; }
 
@@ -17,7 +17,7 @@ namespace Domain.Entities
         {
 
         }
-        public CarImage(Guid id, int carId, string imagePath) : this()
+        public CarImage(Guid id, Guid carId, string imagePath) : this()
         {
             Id = id;
             CarId = carId;

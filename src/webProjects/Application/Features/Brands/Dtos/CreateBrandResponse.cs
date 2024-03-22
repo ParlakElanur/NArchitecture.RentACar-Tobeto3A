@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Brands.Dtos
 {
-    public class CreatedBrandResponse
+    public class CreateBrandResponse
     {
         public string Name { get; set; }
         public DateTime CreatedDate { get; set; }

@@ -21,6 +21,7 @@ namespace Persistence
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<IModelRepository, ModelRepository>();
+            services.AddScoped<ICarImageRepository, CarImageRepository>();
             return services;
         }
     }

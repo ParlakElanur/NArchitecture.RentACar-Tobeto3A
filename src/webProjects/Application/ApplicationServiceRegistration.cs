@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Core.Application.Pipelines.Performance;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Pipelines.Caching;
+using Application.Services.CarImageService;
 
 namespace Application
 {
@@ -28,6 +29,9 @@ namespace Application
 
             services.AddSingleton<LoggerServiceBase, MongoDbLogger>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped<ICarImageService, CarImageManager>();
+            services.AddScoped<CarImageBusinessRules>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));

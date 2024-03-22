@@ -68,12 +68,9 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ModelId")
-                        .HasColumnType("int")
+                    b.Property<Guid>("ModelId")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("ModelId");
-
-                    b.Property<Guid>("ModelId1")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("ModelYear")
                         .HasColumnType("int")
@@ -93,7 +90,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ModelId1");
+                    b.HasIndex("ModelId");
 
                     b.ToTable("Cars", (string)null);
                 });
@@ -105,12 +102,9 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
 
-                    b.Property<int>("CarId")
-                        .HasColumnType("int")
+                    b.Property<Guid>("CarId")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("CarId");
-
-                    b.Property<Guid>("CarId1")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2")
@@ -131,7 +125,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CarId1");
+                    b.HasIndex("CarId");
 
                     b.ToTable("CarImages", (string)null);
                 });
@@ -175,7 +169,7 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.Entities.Model", "Model")
                         .WithMany("Cars")
-                        .HasForeignKey("ModelId1")
+                        .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -186,7 +180,7 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.Entities.Car", "Car")
                         .WithMany("CarImages")
-                        .HasForeignKey("CarId1")
+                        .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
