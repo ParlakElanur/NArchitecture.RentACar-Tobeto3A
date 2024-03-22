@@ -16,6 +16,9 @@ using Core.Application.Pipelines.Performance;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Pipelines.Caching;
 using Application.Services.CarImageService;
+using Core.Application.Pipelines.Authorization;
+using Application.Services.AuthServices.UserService;
+using Application.Services.AuthServices.AuthService;
 
 namespace Application
 {
@@ -32,6 +35,8 @@ namespace Application
 
             services.AddScoped<ICarImageService, CarImageManager>();
             services.AddScoped<CarImageBusinessRules>();
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IAuthService, AuthManager>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
@@ -39,6 +44,7 @@ namespace Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheRemovingBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             return services;
         }
     }
